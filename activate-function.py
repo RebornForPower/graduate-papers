@@ -14,12 +14,16 @@ def relu(x):
 def leaky_relu(x, alpha=0.1):
     return np.where(x > 0, x, x * alpha)
 
+def elu(x, alpha=1.0):
+    return np.where(x > 0, x, alpha * (np.exp(x) - 1))
+
 # 生成数据
 x = np.linspace(-10, 10, 100)
 y_sigmoid = sigmoid(x)
 y_tanh = tanh(x)
 y_relu = relu(x)
 y_leaky_relu = leaky_relu(x)
+y_elu = elu(x)
 
 # 绘制 Sigmoid 函数
 plt.plot(x, y_sigmoid, 'k')
@@ -51,4 +55,12 @@ plt.title('')
 plt.xticks([-10, -5, 0, 5, 10])
 plt.yticks([0,2,4,6,8,10])
 plt.savefig('leaky_relu.svg')
+plt.show()
+
+# 绘制 ELU 函数
+plt.plot(x, y_elu, 'k')
+plt.title('')
+plt.xticks([-10, -5, 0, 5, 10])
+plt.yticks([0,2,4,6,8,10])
+plt.savefig('elu.svg')
 plt.show()
